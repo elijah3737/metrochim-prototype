@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Метрохим — сравнительный анализ конкурентов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · macrostructure: Stat-Led (comparison report) · design-system: kp.html · designed-as-app */
+:root{
+  --color-paper: oklch(96.5% 0.004 255);
+  --color-paper-2: oklch(93.4% 0.006 255);
+  --color-ink: oklch(24% 0.035 255);
+  --color-ink-2: oklch(45% 0.022 255);
+  --color-rule: oklch(85% 0.012 255);
+  --color-navy: oklch(25% 0.045 255);
+  --color-navy-2: oklch(33% 0.05 255);
+  --color-on-navy: oklch(92% 0.01 255);
+  --color-on-navy-2: oklch(75% 0.02 255);
+  --color-accent: oklch(66% 0.17 50);
+  --color-accent-soft: oklch(74% 0.135 56);
+  --color-accent-ink: oklch(40% 0.12 45);
+  --color-accent-text: oklch(17% 0.02 60);
+  --color-ok: oklch(50% 0.1 150);
+  --color-warn: oklch(54% 0.11 72);
+  --color-focus: oklch(62% 0.16 255);
+
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --space-2xs:.5rem; --space-xs:.75rem; --space-sm:1rem; --space-md:1.5rem;
+  --space-lg:2.5rem; --space-xl:4rem; --space-2xl:6rem; --space-3xl:8.5rem;
+
+  --text-sm:.8125rem; --text-base:1.0625rem; --text-md:1.25rem; --text-lg:1.5rem;
+  --text-xl:2rem; --text-2xl:2.6rem; --text-display:clamp(2.4rem,4.4vw + 1rem,4rem);
+
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur:.5s;
+  --maxw:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--color-paper);color:var(--color-ink);
+  font-size:var(--text-base);line-height:1.62;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;letter-spacing:-.018em;color:var(--color-ink)}
+p{overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-paper)}
+
+.mark{width:42px;height:3px;background:var(--color-accent-ink);margin-bottom:var(--space-md)}
+.navy .mark{background:var(--color-accent-soft)}
+.body-col{max-width:62ch}
+.body-col p + p{margin-top:var(--space-sm)}
+
+.sec{padding:var(--space-2xl) 0}
+.navy{background:var(--color-navy);color:var(--color-on-navy)}
+.navy h1,.navy h2,.navy h3{color:var(--color-on-navy)}
+.paper2{background:var(--color-paper-2)}
+
+/* back bar */
+.backbar{background:var(--color-navy);border-bottom:1px solid var(--color-navy-2)}
+.backbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);
+  padding-top:var(--space-sm);padding-bottom:var(--space-sm);font-family:var(--font-mono);
+  font-size:var(--text-sm);letter-spacing:.04em;color:var(--color-on-navy-2)}
+.backbar a{display:inline-flex;align-items:center;gap:.5rem;color:var(--color-on-navy);transition:color var(--dur) var(--ease-out)}
+.backbar a:hover{color:var(--color-accent-soft)}
+
+/* cover */
+.cover{background:var(--color-navy);color:var(--color-on-navy);padding:clamp(3rem,8vh,5rem) 0 clamp(3rem,8vh,5.5rem)}
+.cover h1{font-size:var(--text-display);letter-spacing:-.025em;max-width:20ch;color:var(--color-on-navy);line-height:1.1}
+.cover h1 em{font-style:italic;color:var(--color-accent-soft)}
+.cover .sub{margin-top:var(--space-lg);font-size:var(--text-md);line-height:1.5;color:var(--color-on-navy-2);max-width:52ch}
+.cover .method{margin-top:var(--space-xl);padding-top:var(--space-md);border-top:1px solid var(--color-navy-2);
+  font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.03em;color:var(--color-on-navy-2);max-width:70ch;line-height:1.7}
+.cover .method b{color:var(--color-on-navy);font-weight:500}
+
+/* section head */
+.shead{max-width:34ch;margin-bottom:var(--space-lg)}
+.shead h2{font-size:var(--text-2xl)}
+
+/* summary */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--color-rule);margin-top:var(--space-md)}
+.sumitem{padding:var(--space-md) var(--space-md) var(--space-md) 0;border-bottom:1px solid var(--color-rule)}
+.sumitem .n{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-accent-ink);letter-spacing:.1em}
+.sumitem h3{font-family:var(--font-display);font-size:var(--text-md);font-weight:600;margin:.5rem 0 .4rem}
+.sumitem p{font-size:var(--text-base);color:var(--color-ink-2)}
+
+/* profile cards */
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);margin-top:var(--space-md)}
+.pcard{border:1px solid var(--color-rule);border-top:3px solid var(--color-rule);padding:var(--space-md);background:var(--color-paper)}
+.pcard.us{border-top-color:var(--color-accent);background:var(--color-paper-2)}
+.pcard .tag{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;color:var(--color-ink-2)}
+.pcard.us .tag{color:var(--color-accent-ink)}
+.pcard h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin:.5rem 0 .75rem}
+.pcard .row{display:flex;gap:.6rem;font-size:var(--text-sm);padding:.4rem 0;border-top:1px solid var(--color-rule)}
+.pcard .row .k{font-family:var(--font-mono);color:var(--color-ink-2);min-width:6.5rem;flex:none}
+.pcard .row .v{color:var(--color-ink)}
+.pcard .str{margin-top:var(--space-sm);font-size:var(--text-base);color:var(--color-ink-2)}
+.pcard .str b{color:var(--color-ink);font-weight:500;font-family:var(--font-display)}
+
+/* legend */
+.legend{display:flex;gap:var(--space-md);flex-wrap:wrap;margin:var(--space-md) 0 var(--space-lg);font-size:var(--text-sm);color:var(--color-ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.dot{width:.7rem;height:.7rem;border-radius:50%;flex:none}
+.dot.ok{background:var(--color-ok)} .dot.part{background:var(--color-warn)} .dot.no{background:var(--color-accent)}
+
+/* comparison blocks */
+.cmpblock{margin-bottom:var(--space-lg)}
+.cmpblock > h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;
+  color:var(--color-ink);margin-bottom:var(--space-sm)}
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--color-rule);vertical-align:top;font-size:var(--text-base)}
+thead th{font-family:var(--font-mono);font-size:var(--text-sm);font-weight:500;letter-spacing:.04em;
+  color:var(--color-ink-2);border-bottom:1px solid var(--color-ink-2);white-space:nowrap}
+thead th.us{color:var(--color-accent-ink)}
+tbody td:first-child{font-weight:500;color:var(--color-ink);width:30%}
+td.us{background:var(--color-paper-2)}
+.st{display:inline-flex;align-items:baseline;gap:.4rem;font-size:var(--text-sm);color:var(--color-ink-2)}
+.st::before{content:"";width:.6rem;height:.6rem;border-radius:50%;flex:none;align-self:center}
+.st.ok::before{background:var(--color-ok)} .st.part::before{background:var(--color-warn)} .st.no::before{background:var(--color-accent)}
+.st.na{color:var(--color-ink-2)} .st.na::before{background:var(--color-rule)}
+.st.no{color:var(--color-accent-ink);font-weight:500}
+
+/* takeaway lists */
+.takeblock{margin-top:var(--space-md)}
+.takeblock h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:.5rem}
+.takeblock .from{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-ink-2);letter-spacing:.04em;margin-bottom:var(--space-sm)}
+.checks{list-style:none;display:grid;gap:.6rem;max-width:64ch}
+.checks li{display:flex;gap:.7rem;font-size:var(--text-base);color:var(--color-ink-2)}
+.checks li::before{content:"";width:7px;height:7px;background:var(--color-accent-ink);flex:none;transform:translateY(.55rem)}
+
+/* gap list */
+.gaps{border-top:1px solid var(--color-rule);margin-top:var(--space-md)}
+.gap{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(.8rem,3vw,2rem);align-items:baseline;
+  padding:var(--space-sm) 0;border-bottom:1px solid var(--color-rule)}
+.gap .n{font-family:var(--font-mono);color:var(--color-accent-ink);font-variant-numeric:tabular-nums}
+.gap .t{color:var(--color-ink)}
+.gap .t span{display:block;font-size:var(--text-sm);color:var(--color-ink-2);margin-top:.15rem}
+.gap .pri{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;padding:.25rem .6rem;
+  border:1px solid var(--color-rule);border-radius:2px;white-space:nowrap;color:var(--color-ink-2)}
+.gap .pri.hi{border-color:var(--color-accent);color:var(--color-accent-ink)}
+
+/* map to stages */
+.maprow{display:grid;grid-template-columns:1fr auto;gap:var(--space-md);align-items:baseline;
+  padding:var(--space-sm) 0;border-bottom:1px solid var(--color-navy-2)}
+.maprow:first-child{border-top:1px solid var(--color-navy-2)}
+.maprow .what{color:var(--color-on-navy)}
+.maprow .stage{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;color:var(--color-accent-soft);white-space:nowrap}
+
+/* buttons */
+.btnrow{margin-top:var(--space-lg);display:flex;gap:var(--space-sm);flex-wrap:wrap}
+.btn{font-family:var(--font-body);font-weight:600;font-size:var(--text-base);padding:.95rem 1.6rem;border-radius:2px;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:.6rem;transition:background var(--dur) var(--ease-out),transform .12s var(--ease-out)}
+.btn .ar{transition:transform var(--dur) var(--ease-out)}
+.btn:hover .ar{transform:translateX(5px)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--color-accent-soft);outline-offset:3px}
+.btn-primary{background:var(--color-accent);color:var(--color-accent-text)}
+.btn-primary:hover{background:var(--color-accent-soft)}
+.btn-ghost{border:1px solid var(--color-on-navy-2);color:var(--color-on-navy)}
+.btn-ghost:hover{border-color:var(--color-accent-soft);color:var(--color-accent-soft)}
+
+/* sources */
+.sources{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-ink-2);line-height:1.9;max-width:80ch}
+.sources b{color:var(--color-ink);font-weight:500}
+
+footer{background:var(--color-navy);color:var(--color-on-navy-2);padding:var(--space-lg) 0;
+  font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.03em}
+
+@media(max-width:760px){
+  .sum,.profiles{grid-template-columns:1fr}
+  .sumitem{padding-right:0}
+}
+</style>
+</head>
+<body>
+
+<div class="backbar"><div class="wrap">
+  <span>Приложение к коммерческому предложению</span>
+  <a href="kp.html">← к предложению</a>
+</div></div>
+
+<!-- COVER -->
+<header class="cover"><div class="wrap">
+  <div class="mark"></div>
+  <h1>Сравнительный анализ: <em>конкуренты и вы</em></h1>
+  <p class="sub">Где конкуренты сильнее в онлайне и какие пробелы есть у «Метрохим» прямо сейчас. Это карта того, на что мы будем работать.</p>
+  <p class="method">Сравниваем три компании: <b>Rentex</b> (прямой конкурент по модели), <b>Восток-Сервис</b> (эталон масштаба) и <b>Метрохим</b> (текущее состояние). Источники: официальные сайты компаний, государственные реестры (Rusprofile, СБИС), карты и справочники (Яндекс.Карты, Zoon, 2ГИС), деловые СМИ.</p>
+</div></header>
+
+<!-- РЕЗЮМЕ -->
+<section class="sec"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:20ch;margin-bottom:var(--space-sm)">Главное за минуту</h2>
+  <div class="sum">
+    <div class="sumitem"><span class="n">01</span><h3>У вас сильный бизнес</h3><p>20+ лет, полный цикл, собственное производство и контракт с метрополитеном. По сути дела вы не слабее конкурентов.</p></div>
+    <div class="sumitem"><span class="n">02</span><h3>Но слабее в онлайне</h3><p>У конкурентов есть каталог, заявки, контент и репутация. У вас сайт-визитка и оценка 1,5 из 5 на картах.</p></div>
+    <div class="sumitem"><span class="n">03</span><h3>Это и есть точки роста</h3><p>Всё, чего у вас нет в онлайне, конкуренты уже используют. Закрываем эти пробелы — и выходим на их уровень.</p></div>
+  </div>
+</div></section>
+
+<!-- ПРОФИЛИ -->
+<section class="sec paper2"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:24ch;margin-bottom:var(--space-sm)">Кого сравниваем</h2>
+  <div class="profiles">
+    <div class="pcard">
+      <span class="tag">Конкурент · модель</span>
+      <h3>Rentex</h3>
+      <div class="row"><span class="k">Модель</span><span class="v">аренда + стирка спецодежды по подписке</span></div>
+      <div class="row"><span class="k">Масштаб</span><span class="v">более 500 предприятий</span></div>
+      <div class="row"><span class="k">География</span><span class="v">Москва, Нижний Новгород, РФ и СНГ</span></div>
+      <p class="str"><b>Сильны:</b> чёткие продуктовые линейки (STANDARD, PREMIUM, FOOD LINE и др.) и понятный сайт-витрина с каталогом.</p>
+    </div>
+    <div class="pcard">
+      <span class="tag">Конкурент · масштаб</span>
+      <h3>Восток-Сервис</h3>
+      <div class="row"><span class="k">Модель</span><span class="v">производство и продажа СИЗ + аутсорсинг</span></div>
+      <div class="row"><span class="k">Масштаб</span><span class="v">280 магазинов, 18 швейных фабрик</span></div>
+      <div class="row"><span class="k">География</span><span class="v">вся Россия и СНГ</span></div>
+      <p class="str"><b>Сильны:</b> полноценный интернет-магазин с личным кабинетом, контент, учебный центр и вертикальная интеграция.</p>
+    </div>
+    <div class="pcard us">
+      <span class="tag">Вы · сейчас</span>
+      <h3>Метрохим</h3>
+      <div class="row"><span class="k">Модель</span><span class="v">аренда + химчистка + пошив под ключ</span></div>
+      <div class="row"><span class="k">Масштаб</span><span class="v">20+ лет, метрополитен (10 000+ комплектов)</span></div>
+      <div class="row"><span class="k">География</span><span class="v">Санкт-Петербург</span></div>
+      <p class="str"><b>Сильны:</b> полный цикл и немецкое оборудование. <b>Слабы:</b> сайт-визитка, нет каталога и заявок, репутация на нуле.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ТАБЛИЦА -->
+<section class="sec"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:20ch">Детальное сравнение</h2>
+  <div class="legend">
+    <span><span class="dot ok"></span>есть</span>
+    <span><span class="dot part"></span>частично</span>
+    <span><span class="dot no"></span>нет — наш фронт работ</span>
+  </div>
+
+  <div class="cmpblock"><h3>Бизнес и позиционирование</h3><div class="tscroll"><table>
+    <thead><tr><th>Критерий</th><th>Rentex</th><th>Восток-Сервис</th><th class="us">Метрохим</th></tr></thead>
+    <tbody>
+      <tr><td>Понятная бизнес-модель на сайте</td><td><span class="st ok">есть</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st part">размыто</span></td></tr>
+      <tr><td>Единое позиционирование / УТП</td><td><span class="st ok">есть</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Географический охват онлайн</td><td><span class="st ok">РФ, СНГ</span></td><td><span class="st ok">РФ, СНГ</span></td><td class="us"><span class="st part">СПб</span></td></tr>
+      <tr><td>Масштаб онлайн-присутствия</td><td><span class="st part">средний</span></td><td><span class="st ok">максимальный</span></td><td class="us"><span class="st no">минимальный</span></td></tr>
+    </tbody>
+  </table></div></div>
+
+  <div class="cmpblock"><h3>Сайт и структура</h3><div class="tscroll"><table>
+    <thead><tr><th>Критерий</th><th>Rentex</th><th>Восток-Сервис</th><th class="us">Метрохим</th></tr></thead>
+    <tbody>
+      <tr><td>Каталог услуг / продукции</td><td><span class="st ok">есть</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Отраслевые решения</td><td><span class="st part">частично</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Кейсы / портфолио</td><td><span class="st part">частично</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Форма заявки / расчёта</td><td><span class="st na">—</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+    </tbody>
+  </table></div></div>
+
+  <div class="cmpblock"><h3>Цифровые инструменты</h3><div class="tscroll"><table>
+    <thead><tr><th>Критерий</th><th>Rentex</th><th>Восток-Сервис</th><th class="us">Метрохим</th></tr></thead>
+    <tbody>
+      <tr><td>Интернет-магазин / каталог с корзиной</td><td><span class="st no">нет</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Личный кабинет / B2B-портал</td><td><span class="st na">—</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Онлайн-расчёт стоимости</td><td><span class="st na">—</span></td><td><span class="st na">—</span></td><td class="us"><span class="st no">нет</span></td></tr>
+    </tbody>
+  </table></div></div>
+
+  <div class="cmpblock"><h3>Привлечение клиентов</h3><div class="tscroll"><table>
+    <thead><tr><th>Критерий</th><th>Rentex</th><th>Восток-Сервис</th><th class="us">Метрохим</th></tr></thead>
+    <tbody>
+      <tr><td>Блог / контент под SEO</td><td><span class="st part">частично</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Присутствие на картах и в агрегаторах</td><td><span class="st ok">есть</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st part">слабо</span></td></tr>
+      <tr><td>Региональное масштабирование</td><td><span class="st no">нет</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+    </tbody>
+  </table></div></div>
+
+  <div class="cmpblock"><h3>Доверие</h3><div class="tscroll"><table>
+    <thead><tr><th>Критерий</th><th>Rentex</th><th>Восток-Сервис</th><th class="us">Метрохим</th></tr></thead>
+    <tbody>
+      <tr><td>Репутация и отзывы</td><td><span class="st na">—</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">1,5 из 5</span></td></tr>
+      <tr><td>Реквизиты и юр. данные на сайте</td><td><span class="st na">—</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st no">нет</span></td></tr>
+      <tr><td>Контент о компании и производстве</td><td><span class="st part">частично</span></td><td><span class="st ok">есть</span></td><td class="us"><span class="st part">частично</span></td></tr>
+    </tbody>
+  </table></div></div>
+  <p style="font-size:var(--text-sm);color:var(--color-ink-2);margin-top:var(--space-xs)">«—» — данные не подтверждены публично на момент анализа.</p>
+</div></section>
+
+<!-- ЧТО ПЕРЕНЯТЬ -->
+<section class="sec paper2"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:26ch;margin-bottom:var(--space-md)">Что делают хорошо конкуренты — и что перенимаем</h2>
+  <div class="takeblock">
+    <h3>У Rentex</h3>
+    <div class="from">конкурент по модели</div>
+    <ul class="checks">
+      <li>Услуга упакована в понятные продуктовые линейки — клиенту легко выбрать. Сделаем то же на страницах услуг и отраслей.</li>
+      <li>Чистый сайт-витрина с каталогом — никакого «визиточного» вида. Берём как минимальную планку структуры.</li>
+    </ul>
+  </div>
+  <div class="takeblock" style="margin-top:var(--space-lg)">
+    <h3>У Восток-Сервис</h3>
+    <div class="from">эталон масштаба и цифры</div>
+    <ul class="checks">
+      <li>Полноценная цифровая экосистема: каталог, личный кабинет, контент. Адаптируем уровень подачи под ваш масштаб.</li>
+      <li>Демонстрация производства и мощностей формирует доверие. Покажем ваше оборудование и полный цикл так же убедительно.</li>
+      <li>Системный контент и SEO дают постоянный трафик. Запускаем блог и работу с поиском.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ПРОБЕЛЫ -->
+<section class="sec"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:22ch">Карта пробелов «Метрохим»</h2>
+  <div class="gaps">
+    <div class="gap"><span class="n">01</span><span class="t">Нет продающей структуры сайта<span>каталог услуг и отраслевых решений отсутствует</span></span><span class="pri hi">высокий</span></div>
+    <div class="gap"><span class="n">02</span><span class="t">Нет форм заявки и онлайн-расчёта<span>клиенту некуда оставить обращение</span></span><span class="pri hi">высокий</span></div>
+    <div class="gap"><span class="n">03</span><span class="t">Размытое позиционирование<span>нет единого УТП «аренда под ключ»</span></span><span class="pri hi">высокий</span></div>
+    <div class="gap"><span class="n">04</span><span class="t">Репутация на нуле<span>1,5 из 5 на картах, с отзывами не работают</span></span><span class="pri hi">высокий</span></div>
+    <div class="gap"><span class="n">05</span><span class="t">Не показан ключевой кейс<span>сотрудничество с метрополитеном не раскрыто</span></span><span class="pri">средний</span></div>
+    <div class="gap"><span class="n">06</span><span class="t">Нет блога и SEO-контента<span>поисковые системы почти не показывают компанию</span></span><span class="pri">средний</span></div>
+    <div class="gap"><span class="n">07</span><span class="t">Слабое присутствие на картах и в агрегаторах<span>профили не оформлены и не ведутся</span></span><span class="pri">средний</span></div>
+    <div class="gap"><span class="n">08</span><span class="t">Нет реквизитов и контента о производстве<span>на сайте не хватает аргументов доверия для B2B</span></span><span class="pri">средний</span></div>
+  </div>
+</div></section>
+
+<!-- ВЫВОДЫ → ЭТАПЫ -->
+<section class="sec navy"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:24ch;margin-bottom:var(--space-md)">Каждый пробел — это этап работ</h2>
+  <div>
+    <div class="maprow"><span class="what">Структура сайта, заявки, позиционирование, кейс</span><span class="stage">→ Этап 2 · Сайт</span></div>
+    <div class="maprow"><span class="what">Карты, агрегаторы, репутация, реквизиты</span><span class="stage">→ Этап 3 · Площадки</span></div>
+    <div class="maprow"><span class="what">Блог, SEO-контент, GEO-оптимизация</span><span class="stage">→ Этап 4 · Блог</span></div>
+    <div class="maprow"><span class="what">Поток заявок по горячим запросам</span><span class="stage">→ Этап 5 · Реклама</span></div>
+  </div>
+  <div class="btnrow">
+    <a class="btn btn-ghost" href="kp.html">← Вернуться к предложению</a>
+    <a class="btn btn-primary" href="index.html" target="_blank" rel="noopener">Посмотреть прототип сайта <span class="ar">→</span></a>
+  </div>
+</div></section>
+
+<!-- ИСТОЧНИКИ -->
+<section class="sec"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-xl);max-width:20ch;margin-bottom:var(--space-md)">Источники анализа</h2>
+  <p class="sources">
+    <b>Сайты компаний:</b> metrochim.ru, rentex-service.ru, vostok.ru<br>
+    <b>Госреестры:</b> Rusprofile, СБИС (реквизиты, виды деятельности, отчётность)<br>
+    <b>Карты и справочники:</b> Яндекс.Карты, Zoon, 2ГИС (присутствие, рейтинг, отзывы)<br>
+    <b>Деловые СМИ:</b> Деловой Петербург и отраслевые публикации
+  </p>
+</div></section>
+
+<footer><div class="wrap">
+  ООО «Метрохим» · сравнительный анализ конкурентов · приложение к коммерческому предложению
+</div></footer>
+
+</body>
+</html>
