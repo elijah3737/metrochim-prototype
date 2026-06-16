@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Метрохим — аренда и обслуживание спецодежды (прототип)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#11385c; --navy-d:#0b2741; --navy-l:#1d5586;
+  --accent:#ef7d00; --accent-d:#cf6a00;
+  --ink:#1b2733; --muted:#5d6b7a; --line:#e3e8ee; --bg:#f4f7fa; --soft:#eef3f8; --white:#fff;
+  --maxw:1160px; --r:14px; --r-s:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.2;font-weight:700;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4vw,46px)}
+h2{font-size:clamp(23px,3vw,32px)}
+h3{font-size:19px}
+p{color:var(--ink)}
+.muted{color:var(--muted)}
+.tag{display:inline-block;font-size:13px;font-weight:600;color:var(--accent-d);background:#fdeede;padding:5px 12px;border-radius:30px;letter-spacing:.02em}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 24px;border-radius:var(--r-s);border:none;cursor:pointer;transition:.15s;font-family:inherit}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-d)}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn-ghost:hover{border-color:#fff}
+.btn-line{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+.btn-line:hover{border-color:var(--navy-l)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:18px;min-height:72px}
+.logo{display:flex;flex-direction:column;line-height:1.05;flex:none}
+.logo b{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:.04em}
+.logo span{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+nav.main{display:flex;gap:15px;margin-left:4px;flex-wrap:nowrap}
+nav.main a{font-size:14.5px;color:var(--ink);font-weight:500;padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
+nav.main a:hover{color:var(--navy-l)}
+nav.main a.active{color:var(--navy);border-color:var(--accent)}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:14px;flex:none}
+.hd-phone{font-weight:700;color:var(--navy);font-size:15px;white-space:nowrap}
+.hd-right .btn{padding:11px 18px;font-size:14.5px;white-space:nowrap}
+.burger{display:none;background:none;border:none;font-size:26px;color:var(--navy);cursor:pointer}
+
+/* sections */
+section{padding:64px 0}
+.lead{font-size:18px;color:var(--muted);max-width:620px}
+.center{text-align:center}
+.center .lead{margin:14px auto 0}
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.15s}
+.card.link:hover{border-color:var(--navy-l);box-shadow:0 8px 26px rgba(17,56,92,.08);transform:translateY(-2px)}
+.card .ic{width:46px;height:46px;border-radius:12px;background:var(--soft);color:var(--navy-l);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.card h3{margin-bottom:8px}
+.card p{font-size:15px;color:var(--muted)}
+.card .more{display:inline-block;margin-top:14px;color:var(--accent-d);font-weight:600;font-size:14px}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;padding:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:60px;padding-bottom:60px}
+.hero h1{color:#fff}
+.hero p{color:#cdd9e6;font-size:19px;margin:18px 0 28px;max-width:520px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.ph{background:linear-gradient(135deg,#1d5586,#16456c);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:#9fc0dd;font-size:14px;min-height:300px;border:1px dashed rgba(255,255,255,.25);text-align:center;padding:20px}
+.ph.sm{min-height:150px}
+.ph.lt{background:var(--soft);color:#8aa0b5;border:1px dashed #c4d4e2}
+
+/* trust strip */
+.trust{background:var(--navy-d);color:#fff;padding:26px 0}
+.trust .row{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+.trust .it{flex:1;min-width:160px}
+.trust .it b{display:block;font-size:24px;color:#fff}
+.trust .it span{font-size:13px;color:#9fb6cc}
+
+/* steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 18px}
+.step::before{counter-increment:s;content:counter(s);display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;margin-bottom:12px}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* sub bg */
+.bg-soft{background:var(--soft)}
+.bg-white{background:#fff}
+
+/* breadcrumb + page head */
+.crumb{font-size:13px;color:var(--muted);padding:18px 0 0}
+.crumb a:hover{color:var(--navy-l)}
+.phead{padding:34px 0 10px}
+.phead .tag{margin-bottom:14px}
+
+/* list with checks */
+.checks{list-style:none;display:grid;gap:12px;margin-top:8px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
+.checks li::before{content:"✓";color:var(--accent);font-weight:800;flex:none}
+.cols2{columns:2;column-gap:40px}
+@media(max-width:640px){.cols2{columns:1}}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cmp .col{border:1px solid var(--line);border-radius:var(--r);padding:26px;background:#fff}
+.cmp .col.win{border-color:var(--accent);box-shadow:0 8px 26px rgba(239,125,0,.1)}
+.cmp h3{margin-bottom:14px}
+.cmp ul{list-style:none;display:grid;gap:10px}
+.cmp li{font-size:15px;color:var(--muted);display:flex;gap:10px}
+.cmp li::before{content:"—";color:var(--line)}
+.cmp .win li::before{content:"✓";color:var(--accent);font-weight:700}
+.cmp .win li{color:var(--ink)}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:820px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:var(--r-s);overflow:hidden}
+.qa summary{cursor:pointer;padding:18px 22px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:14px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";color:var(--accent);font-weight:700;font-size:20px}
+.qa[open] summary::after{content:"–"}
+.qa .a{padding:0 22px 20px;color:var(--muted);font-size:15px}
+
+/* cta band */
+.band{background:var(--navy);color:#fff;border-radius:var(--r);padding:44px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.band h2{color:#fff}
+.band p{color:#cdd9e6;margin-top:6px}
+
+/* form */
+.formwrap{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-s);font-family:inherit;font-size:15px;background:var(--bg)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--navy-l)}
+.ok{background:#e8f6ee;border:1px solid #b6e0c6;color:#1d7a45;padding:14px;border-radius:var(--r-s);font-size:15px;display:none}
+
+/* case */
+.metric{display:flex;gap:24px;flex-wrap:wrap;margin:22px 0}
+.metric .m b{display:block;font-size:34px;color:var(--navy);font-weight:800}
+.metric .m span{font-size:14px;color:var(--muted)}
+
+/* article */
+.article{max-width:760px;margin:0 auto}
+.article p{margin:16px 0;font-size:17px}
+.article h2{margin:30px 0 10px}
+.article .toc{background:var(--soft);border-radius:var(--r);padding:20px 24px;margin:20px 0}
+.article .toc b{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.article .toc ul{margin:8px 0 0 18px}
+.article .toc li{margin:4px 0}
+
+/* footer */
+footer{background:var(--navy-d);color:#cdd9e6;padding:50px 0 24px;font-size:14px}
+footer .fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:30px}
+footer h4{color:#fff;font-size:15px;margin-bottom:14px}
+footer a:hover{color:#fff}
+footer .req{font-size:13px;color:#8aa0b5;line-height:1.7}
+footer .fl{display:grid;gap:8px}
+.copy{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding-top:18px;color:#7d92a7;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media(max-width:900px){
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .hero .wrap,.g2,.cmp{grid-template-columns:1fr}
+  footer .fg{grid-template-columns:1fr 1fr}
+  nav.main{display:none;position:absolute;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 24px;border-bottom:1px solid var(--line);gap:6px}
+  nav.main.open{display:flex}
+  nav.main a{padding:8px 0}
+  .burger{display:block}
+  .hd-phone{display:none}
+}
+@media(max-width:560px){.g3,.g4,.metric{grid-template-columns:1fr}.band{padding:28px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a href="#/" class="logo"><b>МЕТРОХИМ</b><span>Спецодежда под ключ</span></a>
+    <nav class="main" id="nav">
+      <a href="#/uslugi">Услуги</a>
+      <a href="#/otrasli">Отрасли</a>
+      <a href="#/kak-rabotaem">Как работаем</a>
+      <a href="#/keysy">Кейсы</a>
+      <a href="#/blog">Блог</a>
+      <a href="#/o-kompanii">О компании</a>
+      <a href="#/kontakty">Контакты</a>
+    </nav>
+    <div class="hd-right">
+      <span class="hd-phone">+7 (812) 748-53-48</span>
+      <a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <h4>Метрохим</h4>
+        <p class="req">Аренда, стирка, химчистка и пошив спецодежды для предприятий Санкт-Петербурга и области с 2001 года. Полный цикл обслуживания рабочей одежды под ключ.</p>
+      </div>
+      <div>
+        <h4>Услуги</h4>
+        <div class="fl">
+          <a href="#/uslugi/arenda">Аренда спецодежды</a>
+          <a href="#/uslugi/stirka">Стирка и химчистка</a>
+          <a href="#/uslugi/poshiv">Пошив под заказ</a>
+          <a href="#/uslugi/remont">Ремонт и маркировка</a>
+          <a href="#/uslugi/logistika">Хранение и логистика</a>
+        </div>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <div class="fl">
+          <a href="#/o-kompanii">О компании</a>
+          <a href="#/keysy">Кейсы</a>
+          <a href="#/blog">Блог</a>
+          <a href="#/otrasli">Отрасли</a>
+          <a href="#/kontakty">Контакты</a>
+        </div>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p class="req">
+          Санкт-Петербург, пр. Стачек, 100, лит. К<br>
+          +7 (812) 748-53-48<br>
+          info@metrochim.ru<br>
+          Пн–Пт 9:00–18:00
+        </p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>ООО «Метрохим» · ИНН 7826069993 · ОГРН 1037851013375</span>
+      <span>Прототип сайта · 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SERVICES = {
+  arenda:{
+    icon:"♻", title:"Аренда спецодежды",
+    lead:"Полный цикл обслуживания рабочей одежды по подписке: вы платите помесячно, а мы шьём, стираем, чиним, маркируем и выдаём комплекты вашему персоналу.",
+    intro:"Аренда — самый выгодный способ обеспечить сотрудников чистой и исправной спецодеждой без капитальных вложений. Вам не нужно покупать одежду на склад, организовывать стирку и списывать износ — всё это берёт на себя Метрохим по договору на срок до 5 лет.",
+    includes:["Подбор и пошив комплектов под ваши задачи","Регулярная промышленная стирка и химчистка","Ремонт и замена изношенных изделий","Маркировка по сотрудникам и подразделениям","Сбор, доставка и выдача по графику","Учёт и контроль состояния каждого комплекта"],
+    benefits:["Помесячная оплата вместо разовых затрат","Персонал всегда в чистой и опрятной одежде","Срок службы комплектов — до 50 циклов стирки","Не нужны свой склад, прачечная и кладовщик"],
+    faq:[
+      ["Какой минимальный объём для аренды?","Мы работаем как с небольшими бригадами, так и с предприятиями на тысячи сотрудников. Условия рассчитываем индивидуально под штат и специфику."],
+      ["Что входит в ежемесячный платёж?","Пошив или подбор, стирка, химчистка, ремонт, маркировка, логистика и учёт. Вы получаете готовый сервис, а не отдельные услуги."],
+      ["Что будет с одеждой при износе?","Изношенные изделия мы ремонтируем или заменяем на новые в рамках договора — без доплат сверх тарифа."]
+    ]
+  },
+  stirka:{
+    icon:"🌀", title:"Промышленная стирка и химчистка",
+    lead:"Профессиональная стирка и химчистка спецодежды на сертифицированном немецком оборудовании Miele, BOWE и Veit с сохранением защитных свойств тканей.",
+    intro:"Рабочая одежда требует особого ухода: масло, реагенты, краска и сложные загрязнения не отстирываются в обычной прачечной. Мы используем промышленные программы и профессиональную химию, которые удаляют загрязнения и при этом сохраняют цвет, форму и защитные свойства спецодежды.",
+    includes:["Стирка по типу загрязнения и ткани","Химчистка изделий, не подлежащих стирке","Обработка масло- и водоотталкивающих покрытий","Дезинфекция и устранение запахов","Глажка и финишная обработка","Стирка для тех, у кого своя спецодежда"],
+    benefits:["Оборудование последнего поколения","До 50 циклов без потери защитных свойств","Сохранение цвета и корпоративного вида","Соблюдение санитарных норм"],
+    faq:[
+      ["Можно отдавать на стирку свою одежду, без аренды?","Да. Стирка и химчистка доступны как отдельная услуга для предприятий, которые закупают спецодежду самостоятельно."],
+      ["Как часто нужно стирать спецодежду?","Зависит от отрасли и условий. Мы поможем составить график обслуживания под ваши нормы и интенсивность загрязнения."]
+    ]
+  },
+  poshiv:{
+    icon:"✂", title:"Пошив спецодежды под заказ",
+    lead:"Разработка и пошив спецодежды под вашу отрасль, фирменный стиль и реальные размеры сотрудников — от лекал до готовых комплектов.",
+    intro:"Готовая спецодежда не всегда подходит по крою, тканям и требованиям отрасли. Мы разрабатываем и шьём комплекты под конкретную задачу: подбираем ткани и фурнитуру, учитываем нормы безопасности, наносим логотип и выдерживаем единый корпоративный стиль.",
+    includes:["Разработка моделей и лекал","Подбор тканей и защитных материалов","Пошив по индивидуальным размерам","Нанесение логотипа и фирменных цветов","Производство партий любого объёма","Возможность дальнейшей аренды и обслуживания"],
+    benefits:["Одежда по реальным размерам персонала","Единый корпоративный вид","Соответствие отраслевым требованиям","Бесшовный переход к аренде и стирке"],
+    faq:[
+      ["Можно пошить небольшую партию?","Да, мы беремся за партии разного объёма. Параметры обсуждаем под вашу задачу."],
+      ["Сшитую одежду можно потом сдать на обслуживание?","Конечно — пошив, стирка и аренда объединяются в один сервис полного цикла."]
+    ]
+  },
+  remont:{
+    icon:"🧵", title:"Ремонт и маркировка",
+    lead:"Продлеваем срок службы спецодежды и наводим порядок в учёте: ремонтируем изделия и маркируем их по сотрудникам и подразделениям.",
+    intro:"Своевременный ремонт и понятная маркировка экономят бюджет и упрощают выдачу. Мы восстанавливаем изделия вместо замены и маркируем каждый комплект, чтобы одежда не терялась и закреплялась за конкретным сотрудником.",
+    includes:["Ремонт швов, молний, фурнитуры","Замена изношенных элементов","Маркировка названием компании","Индивидуальные ID сотрудников","Нанесение штрихкодов для учёта","Контроль состояния комплектов"],
+    benefits:["Меньше затрат на закупку новой одежды","Прозрачный учёт и быстрая выдача","Одежда закреплена за сотрудником","Контроль износа и сроков замены"],
+    faq:[
+      ["Маркировка доступна без аренды?","Да, маркировку и ремонт можно заказать отдельно для вашего парка спецодежды."]
+    ]
+  },
+  logistika:{
+    icon:"📦", title:"Хранение, выдача и логистика",
+    lead:"Берём на себя весь оборот спецодежды: храним, собираем, доставляем и выдаём комплекты по графику — вам не нужны склад и кладовщик.",
+    intro:"Управление спецодеждой — это не только стирка, но и логистика. Мы организуем хранение, регулярный сбор грязных и доставку чистых комплектов, выдачу по сотрудникам и полный учёт движения одежды.",
+    includes:["Хранение комплектов на нашей базе","Регулярный сбор и доставка по графику","Выдача по сотрудникам и сменам","Подменный фонд на время стирки","Учёт движения каждого изделия","Отчётность для ответственных лиц"],
+    benefits:["Не нужен свой склад и персонал","Чистая одежда всегда в наличии","Прозрачный учёт и отчётность","Бесперебойная работа смен"],
+    faq:[
+      ["Как организована доставка?","Мы выстраиваем график под ваши смены: забираем грязные комплекты и привозим чистые в согласованные дни."]
+    ]
+  }
+};
+
+const INDUSTRIES = {
+  transport:{
+    icon:"🚇", title:"Спецодежда для транспорта и метро",
+    lead:"Обслуживаем форму и спецодежду транспортных предприятий — от метрополитена до автопарков и логистики.",
+    intro:"Сотрудники транспорта всегда на виду у пассажиров, а их одежда быстро изнашивается и пачкается. Мы обеспечиваем единый опрятный вид персонала и берём на себя весь цикл: пошив форменной одежды, стирку, ремонт и своевременную замену.",
+    norms:"Учитываем требования к форменной и сигнальной одежде, износостойкости тканей и видимости персонала. Помогаем привести парк спецодежды в соответствие с нормами охраны труда.",
+    services:["arenda","stirka","poshiv","remont"],
+    benefits:["Опрятный вид персонала на линии","Износостойкие ткани и фурнитура","Срочная замена и подменный фонд","Маркировка и учёт по сотрудникам"]
+  },
+  proizvodstvo:{
+    icon:"🏭", title:"Спецодежда для производства",
+    lead:"Защитная и рабочая одежда для заводов и производственных предприятий с обслуживанием полного цикла.",
+    intro:"На производстве спецодежда сталкивается с маслом, реагентами, металлической пылью и механическим износом. Мы подбираем стойкие ткани, организуем профессиональную стирку сложных загрязнений и поддерживаем парк одежды в рабочем состоянии.",
+    norms:"Подбираем спецодежду с учётом классов защиты, результатов СОУТ и условий на участках. Обеспечиваем стирку, сохраняющую защитные свойства тканей.",
+    services:["arenda","stirka","poshiv","logistika"],
+    benefits:["Стойкость к сложным загрязнениям","Сохранение защитных свойств после стирки","Учёт по цехам и сменам","Подменный фонд для бесперебойной работы"]
+  },
+  horeca:{
+    icon:"🍽", title:"Спецодежда для HoReCa",
+    lead:"Форма и текстиль для ресторанов, кафе, отелей и пищевых производств с регулярным обслуживанием.",
+    intro:"В сфере гостеприимства чистота и внешний вид персонала напрямую влияют на впечатление гостя. Мы шьём форму в фирменном стиле, обеспечиваем безупречную стирку и регулярную доставку чистых комплектов.",
+    norms:"Учитываем санитарные требования к одежде персонала на пищевых производствах и в общепите. Проводим дезинфекцию и устранение запахов.",
+    services:["arenda","stirka","poshiv"],
+    benefits:["Безупречный вид персонала","Дезинфекция и санитарные нормы","Форма в фирменном стиле","Доставка чистых комплектов по графику"]
+  },
+  medicina:{
+    icon:"⚕", title:"Спецодежда для медицины",
+    lead:"Медицинская одежда и текстиль для клиник, лабораторий и медцентров с дезинфекцией и учётом.",
+    intro:"Медицинская спецодежда требует строгого соблюдения санитарных норм и регулярной дезинфекции. Мы обеспечиваем стирку с обеззараживанием, аккуратный учёт по сотрудникам и поддержание опрятного вида.",
+    norms:"Соблюдаем санитарно-гигиенические требования к обработке медицинского текстиля. Проводим дезинфекцию и контроль качества стирки.",
+    services:["arenda","stirka","remont"],
+    benefits:["Дезинфекция и санитарные нормы","Опрятный вид персонала","Учёт по сотрудникам","Своевременная замена изделий"]
+  },
+  zkh:{
+    icon:"🧹", title:"Спецодежда для ЖКХ и клининга",
+    lead:"Рабочая и сигнальная одежда для коммунальных и клининговых служб с полным обслуживанием.",
+    intro:"Сотрудники ЖКХ и клининга работают в тяжёлых условиях, а их одежда быстро изнашивается. Мы обеспечиваем стойкую сигнальную спецодежду, регулярную стирку и оперативную замену.",
+    norms:"Подбираем сигнальную одежду повышенной видимости и износостойкие ткани. Учитываем требования охраны труда для работ на улице.",
+    services:["arenda","stirka","logistika","remont"],
+    benefits:["Сигнальная одежда повышенной видимости","Стойкость к износу и загрязнениям","Регулярная стирка и замена","Учёт по бригадам"]
+  }
+};
+
+const ARTICLES = {
+  "arenda-vs-pokupka":{
+    title:"Аренда или покупка спецодежды: что выгоднее предприятию",
+    date:"12 мая 2026",
+    excerpt:"Разбираем на цифрах, когда аренда спецодежды экономит бюджет, а когда выгоднее купить.",
+    toc:["Скрытые затраты при покупке","Что включает аренда","Когда что выбрать"],
+    body:[
+      ["",`Покупка спецодежды кажется простым решением: заплатили один раз — и забыли. Но за разовой ценой скрываются стирка, ремонт, хранение, учёт и списание. В этой статье разбираем, из чего складывается реальная стоимость владения спецодеждой.`],
+      ["Скрытые затраты при покупке",`Кроме самой одежды предприятие оплачивает организацию стирки, ремонт и замену изношенных изделий, склад и кладовщика, а также время на учёт и выдачу. Эти расходы редко считают заранее, но именно они формируют основную часть бюджета на спецодежду.`],
+      ["Что включает аренда",`При аренде вы платите фиксированную сумму ежемесячно, а пошив, стирка, ремонт, маркировка и логистика входят в сервис. Бюджет становится предсказуемым, а персонал всегда обеспечен чистой и исправной одеждой.`],
+      ["Когда что выбрать",`Покупка оправдана при небольшом штате и простых условиях. Аренда выгоднее, когда сотрудников много, одежда быстро пачкается и важен единый опрятный вид. Точный расчёт мы делаем индивидуально под ваш штат.`]
+    ]
+  },
+  "normy-stirki":{
+    title:"Как часто нужно стирать спецодежду по нормам",
+    date:"28 апреля 2026",
+    excerpt:"Что говорят нормы об уходе за спецодеждой и как выстроить график обслуживания.",
+    toc:["Почему важен регулярный уход","Как составить график"],
+    body:[
+      ["",`Спецодежда защищает сотрудника только пока она в исправном и чистом состоянии. Загрязнения снижают защитные свойства тканей и ухудшают внешний вид персонала.`],
+      ["Почему важен регулярный уход",`Регулярная профессиональная стирка удаляет масла, реагенты и пыль, восстанавливает свойства тканей и продлевает срок службы изделий. Обычная прачечная с такими задачами не справляется.`],
+      ["Как составить график",`График зависит от отрасли и интенсивности загрязнения. Мы помогаем выстроить расписание сбора и доставки так, чтобы у персонала всегда был чистый комплект, а смены не простаивали.`]
+    ]
+  },
+  "srok-sluzhby":{
+    title:"Как продлить срок службы спецодежды до 50 циклов",
+    date:"15 апреля 2026",
+    excerpt:"Почему профессиональный уход и ремонт экономят бюджет на закупку.",
+    toc:["Профессиональная стирка","Своевременный ремонт"],
+    body:[
+      ["",`Срок службы спецодежды зависит не только от ткани, но и от того, как за ней ухаживают. Правильный уход позволяет использовать изделия значительно дольше.`],
+      ["Профессиональная стирка",`Промышленные программы и профессиональная химия удаляют загрязнения бережно, сохраняя цвет и защитные свойства. Наше оборудование рассчитано на спецодежду, а не на бытовой текстиль.`],
+      ["Своевременный ремонт",`Замена молнии или шва стоит в разы дешевле новой куртки. Мы ремонтируем изделия в рамках обслуживания, поэтому парк спецодежды служит дольше.`]
+    ]
+  }
+};
+
+const svcOrder = ["arenda","stirka","poshiv","remont","logistika"];
+const indOrder = ["transport","proizvodstvo","horeca","medicina","zkh"];
+
+/* ---------- partials ---------- */
+function crumb(parts){
+  return `<div class="wrap"><div class="crumb">`+parts.map((p,i)=>{
+    return i<parts.length-1 ? `<a href="${p[1]}">${p[0]}</a> › ` : `<span>${p[0]}</span>`;
+  }).join("")+`</div></div>`;
+}
+function trust(){
+  return `<div class="trust"><div class="wrap"><div class="row">
+    <div class="it"><b>20+ лет</b><span>на рынке с 2001 года</span></div>
+    <div class="it"><b>Miele · BOWE · Veit</b><span>немецкое оборудование</span></div>
+    <div class="it"><b>до 50 циклов</b><span>стирки без потери свойств</span></div>
+    <div class="it"><b>Метрополитен</b><span>среди наших клиентов</span></div>
+  </div></div></div>`;
+}
+function leadForm(title="Рассчитать стоимость", sub="Оставьте контакты — рассчитаем условия под ваш штат и отрасль."){
+  return `<div class="formwrap">
+    <h3>${title}</h3>
+    <p class="muted" style="margin:6px 0 18px">${sub}</p>
+    <form onsubmit="return sent(this)">
+      <div class="field"><label>Имя</label><input required placeholder="Как к вам обращаться"></div>
+      <div class="field"><label>Телефон</label><input required placeholder="+7 (___) ___-__-__"></div>
+      <div class="field"><label>Отрасль / задача</label>
+        <select><option>Транспорт и метро</option><option>Производство</option><option>HoReCa</option><option>Медицина</option><option>ЖКХ и клининг</option><option>Другое</option></select>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Отправить заявку</button>
+      <div class="ok">Спасибо! Заявка отправлена. Это демонстрационная форма прототипа.</div>
+    </form>
+  </div>`;
+}
+function band(){
+  return `<section class="bg-soft"><div class="wrap"><div class="band">
+    <div><h2>Готовы передать спецодежду на аутсорсинг?</h2><p>Рассчитаем стоимость обслуживания под ваше предприятие.</p></div>
+    <a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a>
+  </div></div></section>`;
+}
+function faqBlock(items){
+  if(!items||!items.length) return "";
+  return `<section class="bg-white"><div class="wrap"><h2>Частые вопросы</h2><div class="faq" style="margin-top:24px">`+
+    items.map(q=>`<details class="qa"><summary>${q[0]}</summary><div class="a">${q[1]}</div></details>`).join("")+
+    `</div></div></section>`;
+}
+function sent(f){f.querySelector('.ok').style.display='block';f.querySelector('button').textContent='Отправлено';return false;}
+
+/* ---------- pages ---------- */
+function home(){
+  return `
+  <section class="hero"><div class="wrap">
+    <div>
+      <span class="tag">Аренда · химчистка · пошив</span>
+      <h1 style="margin-top:16px">Аренда и обслуживание спецодежды под ключ</h1>
+      <p>Шьём, стираем, чиним и выдаём рабочую одежду вашего персонала. Вы платите помесячно — и больше не думаете о спецодежде.</p>
+      <div class="cta">
+        <a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a>
+        <a href="#/kak-rabotaem" class="btn btn-ghost">Как мы работаем</a>
+      </div>
+    </div>
+    <div class="ph">Фото: производство и спецодежда Метрохим</div>
+  </div></section>
+  ${trust()}
+
+  <section class="bg-white"><div class="wrap">
+    <div class="center"><span class="tag">Три направления</span><h2 style="margin-top:14px">Полный цикл работы со спецодеждой</h2>
+    <p class="lead">Мы закрываем весь путь рабочей одежды — от пошива до выдачи чистого комплекта.</p></div>
+    <div class="grid g3" style="margin-top:36px">
+      <a href="#/uslugi/arenda" class="card link"><div class="ic">♻</div><h3>Аренда спецодежды</h3><p>Под ключ и помесячно: химчистка, ремонт и выдача без капитальных затрат.</p><span class="more">Подробнее →</span></a>
+      <a href="#/uslugi/stirka" class="card link"><div class="ic">🌀</div><h3>Стирка и химчистка</h3><p>Промышленная стирка на немецком оборудовании с сохранением защитных свойств.</p><span class="more">Подробнее →</span></a>
+      <a href="#/uslugi/poshiv" class="card link"><div class="ic">✂</div><h3>Пошив под заказ</h3><p>Разработка и пошив спецодежды под вашу отрасль, размеры и фирменный стиль.</p><span class="more">Подробнее →</span></a>
+    </div>
+  </div></section>
+
+  <section class="bg-soft"><div class="wrap">
+    <div class="center"><h2>Как мы работаем</h2><p class="lead">Замкнутый цикл: вы получаете готовый сервис, а не отдельные услуги.</p></div>
+    <div class="steps" style="margin-top:34px">
+      <div class="step"><h3>Пошив / подбор</h3><p>Шьём или подбираем комплекты под задачу.</p></div>
+      <div class="step"><h3>Выдача</h3><p>Маркируем и выдаём по сотрудникам.</p></div>
+      <div class="step"><h3>Сбор</h3><p>Забираем грязные комплекты по графику.</p></div>
+      <div class="step"><h3>Стирка</h3><p>Стираем и чистим, ремонтируем износ.</p></div>
+      <div class="step"><h3>Возврат</h3><p>Привозим чистый исправный комплект.</p></div>
+    </div>
+  </div></section>
+
+  <section class="bg-white"><div class="wrap">
+    <div class="center"><span class="tag">Отрасли</span><h2 style="margin-top:14px">Решения под вашу сферу</h2></div>
+    <div class="grid g3" style="margin-top:34px">
+      ${indOrder.map(k=>`<a href="#/otrasli/${k}" class="card link"><div class="ic">${INDUSTRIES[k].icon}</div><h3>${INDUSTRIES[k].title.replace('Спецодежда для ','').replace(/^./,c=>c.toUpperCase())}</h3><p>${INDUSTRIES[k].lead}</p><span class="more">Подробнее →</span></a>`).join("")}
+    </div>
+  </div></section>
+
+  <section class="bg-soft"><div class="wrap"><div class="g2" style="align-items:center">
+    <div><span class="tag">Кейс</span><h2 style="margin:14px 0">Петербургский метрополитен</h2>
+      <p class="muted">Многолетнее обслуживание форменной одежды сотрудников метро: пошив, стирка, ремонт и регулярная выдача комплектов для тысяч работников.</p>
+      <div class="metric"><div class="m"><b>10 000+</b><span>сотрудников обеспечено</span></div><div class="m"><b>с 2013</b><span>года сотрудничества</span></div></div>
+      <a href="#/keysy/metro" class="btn btn-line">Смотреть кейс</a>
+    </div>
+    <div class="ph lt">Фото: форма сотрудников метрополитена</div>
+  </div></div></section>
+
+  <section class="bg-white"><div class="wrap">
+    <div class="center"><h2>Почему выбирают Метрохим</h2></div>
+    <div class="grid g4" style="margin-top:34px">
+      <div class="card"><div class="ic">🏭</div><h3>Свой цикл</h3><p>Производство, прачечная и логистика в одних руках.</p></div>
+      <div class="card"><div class="ic">🛡</div><h3>До 50 циклов</h3><p>Одежда служит дольше без потери защитных свойств.</p></div>
+      <div class="card"><div class="ic">📅</div><h3>Помесячная оплата</h3><p>Предсказуемый бюджет без капитальных затрат.</p></div>
+      <div class="card"><div class="ic">🏷</div><h3>Учёт и маркировка</h3><p>Каждый комплект закреплён за сотрудником.</p></div>
+    </div>
+  </div></section>
+
+  <section class="bg-soft"><div class="wrap">
+    <div class="center"><span class="tag">Блог</span><h2 style="margin-top:14px">Полезное о спецодежде</h2></div>
+    <div class="grid g3" style="margin-top:34px">
+      ${Object.keys(ARTICLES).map(k=>`<a href="#/blog/${k}" class="card link"><div class="ph lt sm" style="margin:-6px 0 16px">Фото статьи</div><h3 style="font-size:17px">${ARTICLES[k].title}</h3><p>${ARTICLES[k].excerpt}</p><span class="more">Читать →</span></a>`).join("")}
+    </div>
+  </div></section>
+
+  ${band()}`;
+}
+
+function uslugiHub(){
+  return crumb([["Главная","#/"],["Услуги"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Услуги</span><h1 style="margin-top:14px">Услуги Метрохим</h1><p class="lead" style="margin-top:12px">Полный цикл обслуживания спецодежды — по отдельности или как единый сервис под ключ.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="grid g3">
+    ${svcOrder.map(k=>`<a href="#/uslugi/${k}" class="card link"><div class="ic">${SERVICES[k].icon}</div><h3>${SERVICES[k].title}</h3><p>${SERVICES[k].lead}</p><span class="more">Подробнее →</span></a>`).join("")}
+  </div></div></section>
+  ${band()}`;
+}
+
+function servicePage(slug){
+  const s=SERVICES[slug]; if(!s) return notFound();
+  return crumb([["Главная","#/"],["Услуги","#/uslugi"],[s.title]])+`
+  <section class="phead"><div class="wrap">
+    <div class="g2" style="align-items:center;gap:40px">
+      <div><span class="tag">Услуга</span><h1 style="margin:14px 0">${s.title}</h1><p class="lead">${s.lead}</p>
+      <div style="margin-top:22px"><a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a></div></div>
+      <div class="ph lt">Фото: ${s.title.toLowerCase()}</div>
+    </div>
+  </div></section>
+
+  <section class="bg-white" style="padding-top:30px"><div class="wrap"><div class="g2" style="gap:40px">
+    <div><h2>Что это даёт</h2><p class="muted" style="margin-top:12px">${s.intro}</p>
+      <h3 style="margin-top:26px">Что входит</h3><ul class="checks cols2">${s.includes.map(i=>`<li>${i}</li>`).join("")}</ul>
+    </div>
+    <div>${leadForm()}</div>
+  </div></div></section>
+
+  <section class="bg-soft"><div class="wrap"><h2 class="center">Преимущества</h2>
+    <div class="grid g4" style="margin-top:30px">${s.benefits.map(b=>`<div class="card"><p style="font-weight:600;color:var(--ink)">${b}</p></div>`).join("")}</div>
+  </div></section>
+
+  <section class="bg-white"><div class="wrap"><h2 class="center">Кому подходит</h2>
+    <div class="grid g4" style="margin-top:30px">${indOrder.slice(0,4).map(k=>`<a href="#/otrasli/${k}" class="card link"><div class="ic">${INDUSTRIES[k].icon}</div><h3 style="font-size:17px">${INDUSTRIES[k].title.replace('Спецодежда для ','')}</h3><span class="more">Перейти →</span></a>`).join("")}</div>
+  </div></section>
+
+  ${faqBlock(s.faq)}
+  ${band()}`;
+}
+
+function otrasliHub(){
+  return crumb([["Главная","#/"],["Отрасли"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Отрасли</span><h1 style="margin-top:14px">Решения по отраслям</h1><p class="lead" style="margin-top:12px">Подбираем спецодежду и обслуживание под специфику вашей сферы.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="grid g3">
+    ${indOrder.map(k=>`<a href="#/otrasli/${k}" class="card link"><div class="ic">${INDUSTRIES[k].icon}</div><h3>${INDUSTRIES[k].title.replace('Спецодежда для ','').replace(/^./,c=>c.toUpperCase())}</h3><p>${INDUSTRIES[k].lead}</p><span class="more">Подробнее →</span></a>`).join("")}
+  </div></div></section>
+  ${band()}`;
+}
+
+function industryPage(slug){
+  const s=INDUSTRIES[slug]; if(!s) return notFound();
+  return crumb([["Главная","#/"],["Отрасли","#/otrasli"],[s.title.replace('Спецодежда для ','')]])+`
+  <section class="phead"><div class="wrap"><div class="g2" style="align-items:center;gap:40px">
+    <div><span class="tag">Отрасль</span><h1 style="margin:14px 0">${s.title}</h1><p class="lead">${s.lead}</p>
+    <div style="margin-top:22px"><a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a></div></div>
+    <div class="ph lt">Фото: ${s.title.replace('Спецодежда для ','').toLowerCase()}</div>
+  </div></div></section>
+
+  <section class="bg-white" style="padding-top:30px"><div class="wrap"><div class="g2" style="gap:40px">
+    <div><h2>Чем помогаем</h2><p class="muted" style="margin-top:12px">${s.intro}</p>
+      <h3 style="margin-top:26px">Требования и нормы</h3><p class="muted" style="margin-top:8px">${s.norms}</p></div>
+    <div>${leadForm("Заявка для отрасли","Опишите задачу — подберём решение под вашу сферу.")}</div>
+  </div></div></section>
+
+  <section class="bg-soft"><div class="wrap"><h2 class="center">Какие услуги подойдут</h2>
+    <div class="grid g4" style="margin-top:30px">${s.services.map(k=>`<a href="#/uslugi/${k}" class="card link"><div class="ic">${SERVICES[k].icon}</div><h3 style="font-size:17px">${SERVICES[k].title}</h3><span class="more">Подробнее →</span></a>`).join("")}</div>
+  </div></section>
+
+  <section class="bg-white"><div class="wrap"><h2 class="center">Преимущества для отрасли</h2>
+    <div class="grid g4" style="margin-top:30px">${s.benefits.map(b=>`<div class="card"><p style="font-weight:600">${b}</p></div>`).join("")}</div>
+  </div></section>
+  ${band()}`;
+}
+
+function kakRabotaem(){
+  return crumb([["Главная","#/"],["Как работаем"]])+`
+  <section class="phead center"><div class="wrap"><span class="tag">Процесс</span><h1 style="margin:14px 0">Как мы работаем</h1><p class="lead">Замкнутый цикл обслуживания спецодежды — от первого замера до постоянной выдачи чистых комплектов.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="steps">
+    <div class="step"><h3>Пошив / подбор</h3><p>Разрабатываем или подбираем комплекты под вашу задачу и отрасль.</p></div>
+    <div class="step"><h3>Выдача</h3><p>Маркируем по сотрудникам и выдаём комплекты на старте.</p></div>
+    <div class="step"><h3>Сбор</h3><p>Забираем грязную одежду по согласованному графику.</p></div>
+    <div class="step"><h3>Стирка и ремонт</h3><p>Стираем, чистим и восстанавливаем изношенные изделия.</p></div>
+    <div class="step"><h3>Возврат</h3><p>Привозим чистые исправные комплекты к следующей смене.</p></div>
+  </div></div></section>
+  <section class="bg-soft"><div class="wrap"><div class="cmp">
+    <div class="col"><h3>Если делать самому</h3><ul>
+      <li>Закупка одежды на склад</li><li>Своя прачечная или подрядчик</li><li>Кладовщик и учёт</li><li>Ремонт и списание износа</li><li>Капитальные затраты сразу</li></ul></div>
+    <div class="col win"><h3>С Метрохим под ключ</h3><ul>
+      <li>Пошив, подбор и замена включены</li><li>Промышленная стирка и химчистка</li><li>Маркировка и учёт по сотрудникам</li><li>Ремонт в рамках обслуживания</li><li>Помесячная оплата без вложений</li></ul></div>
+  </div></div></section>
+  ${band()}`;
+}
+
+function keysy(){
+  return crumb([["Главная","#/"],["Кейсы"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Кейсы</span><h1 style="margin-top:14px">Наши проекты</h1><p class="lead" style="margin-top:12px">Опыт обслуживания спецодежды на предприятиях разного масштаба.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="grid g3">
+    <a href="#/keysy/metro" class="card link"><div class="ph lt sm" style="margin:-6px 0 16px">Фото</div><h3>Петербургский метрополитен</h3><p>Обслуживание форменной одежды для 10 000+ сотрудников с 2013 года.</p><span class="more">Смотреть кейс →</span></a>
+    <div class="card"><div class="ph lt sm" style="margin:-6px 0 16px">Фото</div><h3>Производственное предприятие</h3><p>Аренда и стирка спецодежды с подменным фондом для непрерывных смен.</p></div>
+    <div class="card"><div class="ph lt sm" style="margin:-6px 0 16px">Фото</div><h3>Сеть ресторанов</h3><p>Пошив формы в фирменном стиле и регулярная доставка чистых комплектов.</p></div>
+  </div></div></section>
+  ${band()}`;
+}
+
+function casePage(slug){
+  if(slug!=="metro") return notFound();
+  return crumb([["Главная","#/"],["Кейсы","#/keysy"],["Петербургский метрополитен"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Кейс</span><h1 style="margin:14px 0">Петербургский метрополитен</h1>
+    <p class="lead">Многолетнее обслуживание форменной и рабочей одежды сотрудников метро.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="ph lt" style="min-height:280px">Фото: сотрудники и форма метрополитена</div>
+    <div class="metric"><div class="m"><b>10 000+</b><span>сотрудников обеспечено</span></div><div class="m"><b>с 2013</b><span>года сотрудничества</span></div><div class="m"><b>полный</b><span>цикл обслуживания</span></div></div>
+  </div></section>
+  <section class="bg-white" style="padding-top:20px"><div class="wrap" style="max-width:820px">
+    <h2>Задача</h2><p class="muted" style="margin:10px 0 24px">Обеспечить тысячи сотрудников метрополитена опрятной форменной одеждой и поддерживать её в чистом и исправном состоянии без перебоев в работе смен.</p>
+    <h2>Что сделали</h2><p class="muted" style="margin:10px 0 24px">Организовали полный цикл: пошив форменной одежды, регулярную промышленную стирку, ремонт изношенных изделий, маркировку по сотрудникам и логистику с подменным фондом.</p>
+    <h2>Результат</h2><p class="muted" style="margin:10px 0 24px">Сотрудники метро стабильно обеспечены чистой формой, а предприятие освобождено от закупки, стирки и учёта спецодежды. Сотрудничество продолжается многие годы.</p>
+  </div></section>
+  ${band()}`;
+}
+
+function blog(){
+  return crumb([["Главная","#/"],["Блог"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Блог</span><h1 style="margin-top:14px">Полезное о спецодежде</h1><p class="lead" style="margin-top:12px">Статьи о выборе, уходе и обслуживании рабочей одежды.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="grid g3">
+    ${Object.keys(ARTICLES).map(k=>`<a href="#/blog/${k}" class="card link"><div class="ph lt sm" style="margin:-6px 0 16px">Фото статьи</div><div class="muted" style="font-size:13px">${ARTICLES[k].date}</div><h3 style="font-size:18px;margin:6px 0 8px">${ARTICLES[k].title}</h3><p>${ARTICLES[k].excerpt}</p><span class="more">Читать →</span></a>`).join("")}
+  </div></div></section>
+  ${band()}`;
+}
+
+function article(slug){
+  const a=ARTICLES[slug]; if(!a) return notFound();
+  return crumb([["Главная","#/"],["Блог","#/blog"],[a.title]])+`
+  <section class="phead"><div class="wrap article"><div class="muted" style="font-size:14px">${a.date}</div><h1 style="margin:10px 0">${a.title}</h1></div></section>
+  <section style="padding-top:6px"><div class="wrap"><div class="article">
+    <div class="ph lt">Фото статьи</div>
+    <div class="toc"><b>Содержание</b><ul>${a.toc.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+    ${a.body.map(b=> (b[0]?`<h2>${b[0]}</h2>`:"")+`<p>${b[1]}</p>`).join("")}
+    <div style="background:var(--soft);border-radius:var(--r);padding:24px;margin:30px 0;text-align:center">
+      <h3>Нужна спецодежда для вашего предприятия?</h3>
+      <p class="muted" style="margin:8px 0 16px">Рассчитаем стоимость обслуживания под ваш штат.</p>
+      <a href="#/kontakty" class="btn btn-primary">Рассчитать стоимость</a>
+    </div>
+  </div></div></section>`;
+}
+
+function about(){
+  return crumb([["Главная","#/"],["О компании"]])+`
+  <section class="phead"><div class="wrap"><div class="g2" style="align-items:center;gap:40px">
+    <div><span class="tag">О компании</span><h1 style="margin:14px 0">От стирки формы метро до полного цикла</h1>
+      <p class="muted">Метрохим работает с 2001 года. Мы начинали с прачечной и химчистки рабочей одежды сотрудников петербургского метрополитена, а сегодня обеспечиваем предприятиям полный цикл обслуживания спецодежды — от пошива до аренды.</p></div>
+    <div class="ph lt">Фото: производство Метрохим</div>
+  </div></div></section>
+  ${trust()}
+  <section class="bg-white"><div class="wrap"><h2 class="center">Производство и оборудование</h2>
+    <p class="lead center" style="margin:12px auto 30px">Стирка и химчистка на оборудовании последнего поколения немецких фирм Miele, BOWE и Veit.</p>
+    <div class="grid g3"><div class="ph lt">Фото цеха</div><div class="ph lt">Фото оборудования</div><div class="ph lt">Фото пошива</div></div>
+  </div></section>
+  <section class="bg-soft"><div class="wrap"><h2 class="center">Реквизиты</h2>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>Наименование</h3><p>ООО «Метрохим»</p></div>
+      <div class="card"><h3>ИНН / ОГРН</h3><p>7826069993 / 1037851013375</p></div>
+      <div class="card"><h3>Юридический адрес</h3><p>198207, Санкт-Петербург, пр. Стачек, д. 100, лит. К</p></div>
+    </div>
+  </div></section>
+  ${band()}`;
+}
+
+function kontakty(){
+  return crumb([["Главная","#/"],["Контакты"]])+`
+  <section class="phead"><div class="wrap"><span class="tag">Контакты</span><h1 style="margin-top:14px">Свяжитесь с нами</h1></div></section>
+  <section style="padding-top:14px"><div class="wrap"><div class="g2" style="gap:40px">
+    <div>
+      <div class="card" style="margin-bottom:20px"><h3>Адрес</h3><p class="muted">Санкт-Петербург, пр. Стачек, 100, лит. К</p></div>
+      <div class="card" style="margin-bottom:20px"><h3>Телефон и почта</h3><p class="muted">+7 (812) 748-53-48<br>info@metrochim.ru</p></div>
+      <div class="card" style="margin-bottom:20px"><h3>Режим работы</h3><p class="muted">Пн–Пт 9:00–18:00</p></div>
+      <div class="ph lt" style="min-height:220px">Карта проезда</div>
+    </div>
+    <div>${leadForm("Оставить заявку","Заполните форму — перезвоним и рассчитаем условия.")}</div>
+  </div></div></section>`;
+}
+
+function notFound(){
+  return `<section class="phead center" style="padding:90px 0"><div class="wrap"><h1>Страница не найдена</h1><p class="lead" style="margin:14px auto 22px">Вернитесь на главную страницу прототипа.</p><a href="#/" class="btn btn-primary">На главную</a></div></section>`;
+}
+
+/* ---------- router ---------- */
+function route(){
+  const h=(location.hash||"#/").replace(/^#/,"");
+  const p=h.split("/").filter(Boolean); // e.g. ["uslugi","arenda"]
+  let html="";
+  if(p.length===0) html=home();
+  else if(p[0]==="uslugi") html=p[1]?servicePage(p[1]):uslugiHub();
+  else if(p[0]==="otrasli") html=p[1]?industryPage(p[1]):otrasliHub();
+  else if(p[0]==="kak-rabotaem") html=kakRabotaem();
+  else if(p[0]==="keysy") html=p[1]?casePage(p[1]):keysy();
+  else if(p[0]==="blog") html=p[1]?article(p[1]):blog();
+  else if(p[0]==="o-kompanii") html=about();
+  else if(p[0]==="kontakty") html=kontakty();
+  else html=notFound();
+  document.getElementById("app").innerHTML=html;
+  // active nav
+  document.querySelectorAll("nav.main a").forEach(a=>{
+    a.classList.toggle("active", a.getAttribute("href")==="#/"+(p[0]||""));
+  });
+  document.getElementById("nav").classList.remove("open");
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+window.addEventListener("load",route);
+document.getElementById("burger").addEventListener("click",()=>document.getElementById("nav").classList.toggle("open"));
+</script>
+</body>
+</html>

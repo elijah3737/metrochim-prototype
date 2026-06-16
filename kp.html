@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Метрохим — стратегия онлайн-развития</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · macrostructure: Narrative Workflow · tone: editorial-industrial · anchor hue: orange 48 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+:root{
+  --color-paper: oklch(96.5% 0.004 255);
+  --color-paper-2: oklch(93.4% 0.006 255);
+  --color-ink: oklch(24% 0.035 255);
+  --color-ink-2: oklch(45% 0.022 255);
+  --color-rule: oklch(85% 0.012 255);
+  --color-navy: oklch(25% 0.045 255);
+  --color-navy-2: oklch(33% 0.05 255);
+  --color-on-navy: oklch(92% 0.01 255);
+  --color-on-navy-2: oklch(75% 0.02 255);
+  --color-accent: oklch(66% 0.17 50);
+  --color-accent-soft: oklch(74% 0.135 56);
+  --color-accent-ink: oklch(40% 0.12 45);
+  --color-accent-text: oklch(17% 0.02 60);
+  --color-focus: oklch(62% 0.16 255);
+
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --space-2xs:.5rem; --space-xs:.75rem; --space-sm:1rem; --space-md:1.5rem;
+  --space-lg:2.5rem; --space-xl:4rem; --space-2xl:6rem; --space-3xl:8.5rem;
+
+  --text-sm:.8125rem; --text-base:1.0625rem; --text-md:1.25rem; --text-lg:1.5rem;
+  --text-xl:2rem; --text-2xl:2.6rem; --text-display:clamp(2.7rem,5vw + 1rem,4.6rem);
+  --text-giant:clamp(4.5rem,14vw,11rem);
+
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur:.5s;
+  --maxw:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--color-paper);color:var(--color-ink);
+  font-size:var(--text-base);line-height:1.62;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;letter-spacing:-.018em;color:var(--color-ink)}
+p{overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-paper)}
+
+.mark{width:42px;height:3px;background:var(--color-accent-ink);margin-bottom:var(--space-md)}
+.navy .mark{background:var(--color-accent-soft)}
+.lead{font-size:var(--text-md);line-height:1.55;color:var(--color-ink);max-width:34ch}
+.body-col{max-width:62ch}
+.body-col p + p{margin-top:var(--space-sm)}
+
+/* sections */
+.sec{padding:var(--space-3xl) 0}
+.sec-tight{padding:var(--space-2xl) 0}
+.navy{background:var(--color-navy);color:var(--color-on-navy)}
+.navy h1,.navy h2,.navy h3{color:var(--color-on-navy)}
+.navy .lead{color:var(--color-on-navy)}
+.paper2{background:var(--color-paper-2)}
+
+/* cover */
+.cover{background:var(--color-navy);color:var(--color-on-navy);padding:clamp(3rem,9vh,6rem) 0 clamp(3.5rem,10vh,7rem);
+  position:relative;border-bottom:1px solid var(--color-navy-2)}
+.cover .top{display:flex;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--color-on-navy-2);padding-bottom:clamp(3rem,14vh,7rem);margin-bottom:0;border-bottom:1px solid var(--color-navy-2)}
+.cover h1{font-size:var(--text-display);font-weight:500;letter-spacing:-.025em;margin-top:clamp(2.5rem,8vh,4.5rem);
+  line-height:1.1;max-width:18ch;color:var(--color-on-navy)}
+.cover h1 em{font-style:italic;color:var(--color-accent-soft)}
+.cover .sub{margin-top:var(--space-lg);font-size:var(--text-md);line-height:1.5;color:var(--color-on-navy-2);max-width:46ch}
+.cover .for{margin-top:clamp(2.5rem,7vh,4rem);padding-top:var(--space-md);border-top:1px solid var(--color-navy-2);
+  display:flex;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap;align-items:baseline}
+.cover .for b{font-family:var(--font-display);font-weight:500;font-size:var(--text-md);color:var(--color-on-navy)}
+.cover .for .tags{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;color:var(--color-on-navy-2)}
+
+/* section heads */
+.shead{max-width:30ch;margin-bottom:var(--space-xl)}
+.shead h2{font-size:var(--text-2xl)}
+.split{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+
+/* problem list */
+.plist{border-top:1px solid var(--color-rule);margin-top:var(--space-lg)}
+.prow{display:grid;grid-template-columns:auto 1fr;gap:clamp(1rem,4vw,3rem);
+  padding:var(--space-md) 0;border-bottom:1px solid var(--color-rule);align-items:baseline}
+.prow .n{font-family:var(--font-mono);font-size:var(--text-base);color:var(--color-accent-ink);font-weight:500;font-variant-numeric:tabular-nums}
+.prow h3{font-family:var(--font-display);font-size:var(--text-md);font-weight:600;margin-bottom:.25rem}
+.prow p{color:var(--color-ink-2);max-width:60ch}
+.prow .hi{color:var(--color-ink);font-weight:500}
+
+/* idea statement */
+.statement{font-family:var(--font-display);font-weight:400;font-size:clamp(1.9rem,4.2vw,3.3rem);
+  line-height:1.16;letter-spacing:-.02em;max-width:20ch}
+.statement em{font-style:italic;color:var(--color-accent-soft)}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(1rem,3vw,2rem);margin-top:var(--space-xl);
+  padding-top:var(--space-md);border-top:1px solid var(--color-navy-2)}
+.rstep .rn{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-accent-soft);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.rstep b{display:block;font-family:var(--font-display);font-size:var(--text-md);font-weight:500;margin-top:.6rem;color:var(--color-on-navy)}
+.rstep span{display:block;font-size:var(--text-sm);color:var(--color-on-navy-2);margin-top:.3rem}
+
+/* stages */
+.stage{display:grid;grid-template-columns:minmax(0,7rem) 1fr;gap:clamp(1rem,4vw,3.5rem);
+  padding:var(--space-xl) 0;border-top:1px solid var(--color-rule)}
+.stage:first-of-type{border-top:none;padding-top:var(--space-md)}
+.stage .sn{font-family:var(--font-mono);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;
+  color:var(--color-accent-ink);line-height:1;font-variant-numeric:tabular-nums}
+.stage .sc{max-width:60ch}
+.stage h3{font-family:var(--font-display);font-size:var(--text-xl);font-weight:500;margin-bottom:var(--space-sm)}
+.stage p{color:var(--color-ink-2)}
+.stage p + p{margin-top:var(--space-sm)}
+.stage .hi{color:var(--color-ink);font-weight:500}
+
+/* prototype button */
+.protobox{margin-top:var(--space-md);padding:var(--space-md);background:var(--color-navy);border-radius:2px;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap}
+.protobox .pt{color:var(--color-on-navy-2);font-size:var(--text-sm);max-width:34ch}
+.proto{font-family:var(--font-body);font-weight:600;font-size:var(--text-base);color:var(--color-accent-text);
+  background:var(--color-accent);padding:.95rem 1.6rem;border-radius:2px;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:.6rem;transition:background var(--dur) var(--ease-out),transform .12s var(--ease-out)}
+.proto .ar{transition:transform var(--dur) var(--ease-out)}
+.proto:hover{background:var(--color-accent-soft)}
+.proto:hover .ar{transform:translateX(5px)}
+.proto:active{transform:translateY(1px)}
+.proto:focus-visible{outline:2px solid var(--color-accent-soft);outline-offset:3px}
+
+/* goal */
+.goal{margin-top:var(--space-md);padding-top:var(--space-md);border-top:1px solid var(--color-rule);
+  display:flex;align-items:baseline;gap:clamp(1rem,3vw,2rem);flex-wrap:wrap}
+.goal .num{font-family:var(--font-mono);font-size:var(--text-giant);font-weight:400;line-height:.85;
+  color:var(--color-ink);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.goal .cap{max-width:24ch;color:var(--color-ink-2);font-size:var(--text-base)}
+.goal .cap b{color:var(--color-ink);font-weight:500;font-family:var(--font-display);font-size:var(--text-md);display:block;margin-bottom:.2rem}
+
+/* results */
+.results{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(2rem,6vw,5rem);margin-top:var(--space-lg);
+  border-top:1px solid var(--color-rule)}
+.ritem{padding:var(--space-md) 0;border-bottom:1px solid var(--color-rule)}
+.ritem h3{font-family:var(--font-display);font-size:var(--text-md);font-weight:600;margin-bottom:.3rem;
+  display:flex;gap:.6rem;align-items:baseline}
+.ritem h3::before{content:"";width:7px;height:7px;background:var(--color-accent-ink);flex:none;transform:translateY(-2px)}
+.ritem p{color:var(--color-ink-2);font-size:var(--text-base);padding-left:1.3rem}
+
+/* placeholder rows */
+.prow2{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1rem,4vw,3rem);align-items:baseline;
+  padding:var(--space-md) 0;border-bottom:1px solid var(--color-rule)}
+.prow2:first-of-type{border-top:1px solid var(--color-rule)}
+.prow2 .lbl{font-family:var(--font-display);font-size:var(--text-md);font-weight:600}
+.prow2 p{color:var(--color-ink-2);max-width:52ch}
+.prow2 .badge{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;
+  color:var(--color-ink-2);border:1px solid var(--color-rule);padding:.35rem .7rem;border-radius:2px;white-space:nowrap}
+
+/* close */
+.close{padding:var(--space-3xl) 0}
+.close .statement{margin-top:var(--space-md)}
+
+/* footer */
+footer{background:var(--color-navy);color:var(--color-on-navy-2);padding:var(--space-xl) 0;
+  font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.03em}
+footer .fwrap{display:flex;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap}
+
+/* load reveal */
+.reveal{opacity:0;transform:translateY(14px);animation:rise var(--dur) var(--ease-out) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+@media(max-width:760px){
+  .split,.results{grid-template-columns:1fr;gap:var(--space-md)}
+  .road{grid-template-columns:1fr 1fr;gap:var(--space-md)}
+  .stage{grid-template-columns:1fr;gap:var(--space-xs)}
+  .stage .sn{font-size:2rem}
+  .goal .num{font-size:clamp(3.5rem,22vw,6rem)}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{animation:none;opacity:1;transform:none}
+  *{scroll-behavior:auto}
+  .proto,.proto .ar{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<header class="cover"><div class="wrap reveal">
+  <div class="top">
+    <span>Коммерческое предложение</span>
+    <span>Метрохим · Санкт-Петербург</span>
+  </div>
+  <h1>Сильную компанию должно быть <em>видно</em></h1>
+  <p class="sub">Стратегия онлайн-развития «Метрохим»: как превратить сайт, поиск и карты в постоянный поток заявок от крупных клиентов.</p>
+  <div class="for">
+    <b>Подготовлено для ООО «Метрохим»</b>
+    <span class="tags">аренда · химчистка · пошив спецодежды</span>
+  </div>
+</div></header>
+
+<!-- КОНТЕКСТ -->
+<section class="sec"><div class="wrap">
+  <div class="split">
+    <div class="shead">
+      <div class="mark"></div>
+      <h2>У вас есть всё, кроме присутствия в интернете</h2>
+    </div>
+    <div class="body-col">
+      <p>«Метрохим» — это более 20 лет работы, собственное производство, промышленная стирка на немецком оборудовании Miele, BOWE, Veit и контракт с метрополитеном, который доверяет вам форму тысяч сотрудников. Сильная рыночная позиция.</p>
+      <p>Но в интернете этой силы не видно. Сайт работает как визитка: он не объясняет ваши преимущества, не собирает заявки и почти не появляется в поиске. Для клиента, который ищет подрядчика прямо сейчас, вас будто не существует, и он находит конкурента.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ПРОБЛЕМА -->
+<section class="sec-tight paper2"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-xl);max-width:18ch">Что мешает прямо сейчас</h2>
+  <div class="plist">
+    <div class="prow"><span class="n">01</span><div><h3>Сайт-визитка не продаёт</h3><p>Нет структуры услуг, описания выгод и форм заявки. Посетитель не понимает, что и как у вас заказать.</p></div></div>
+    <div class="prow"><span class="n">02</span><div><h3>Вас не находят в поиске</h3><p>Нет страниц под запросы клиентов и нет блога, поэтому поисковые системы почти не показывают компанию.</p></div></div>
+    <div class="prow"><span class="n">03</span><div><h3>Репутация в сети на нуле</h3><p><span class="hi">Средняя оценка на картах 1,5 из 5.</span> Так вас видит новый клиент ещё до первого звонка.</p></div></div>
+    <div class="prow"><span class="n">04</span><div><h3>Всё держится на одном заказчике</h3><p>Коммерческий поток клиентов не выстроен, и бизнес зависит от одного крупного контракта.</p></div></div>
+  </div>
+</div></section>
+
+<!-- ИДЕЯ -->
+<section class="sec navy"><div class="wrap">
+  <div class="mark"></div>
+  <p class="statement">Аренда чистой спецодежды <em>под ключ</em>: вы шьёте, стираете, чините и выдаёте, клиент платит помесячно.</p>
+  <div class="body-col" style="margin-top:var(--space-lg);color:var(--color-on-navy-2)">
+    <p>Это именно то, что нужно крупному предприятию: не покупать и обслуживать одежду самим, а получить готовый сервис. Связка «химчистка, аренда и пошив» — ваше конкурентное преимущество, с которым удобно заходить к большим компаниям. Вокруг этого сообщения мы и строим весь онлайн.</p>
+  </div>
+
+  <h2 style="margin-top:var(--space-2xl);font-size:var(--text-xl);max-width:22ch;color:var(--color-on-navy)">От фундамента к потоку заявок</h2>
+  <div class="road">
+    <div class="rstep"><span class="rn">01</span><b>Стратегия</b><span>фундамент</span></div>
+    <div class="rstep"><span class="rn">02</span><b>Сайт</b><span>структура и заявки</span></div>
+    <div class="rstep"><span class="rn">03</span><b>Площадки</b><span>карты и репутация</span></div>
+    <div class="rstep"><span class="rn">04</span><b>Блог</b><span>поиск и контент</span></div>
+    <div class="rstep"><span class="rn">05</span><b>Реклама</b><span>поток заявок</span></div>
+  </div>
+  <p style="margin-top:var(--space-md);color:var(--color-on-navy-2);max-width:56ch;font-size:var(--text-sm)">Порядок не случаен: сначала сайт, который умеет принимать клиентов, и только потом трафик. Реклама на неготовый сайт — это слитый бюджет.</p>
+</div></section>
+
+<!-- ЭТАПЫ -->
+<section class="sec"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-2xl);max-width:18ch;margin-bottom:var(--space-lg)">Что входит в каждый этап</h2>
+
+  <div class="stage">
+    <div class="sn">01</div>
+    <div class="sc"><h3>Стратегия</h3>
+      <p>Фундамент всей работы. Мы изучили вашу компанию и конкурентов, определили позиционирование, структуру сайта и логику привлечения клиентов. Этот документ — результат первого этапа.</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="sn">02</div>
+    <div class="sc"><h3>Сайт</h3>
+      <p>Разработаем продающий сайт с понятной структурой: три направления (аренда, стирка и химчистка, пошив), отдельные страницы услуг и отраслей, кейсы, блог и форма «Рассчитать стоимость» на каждой странице. Вместо каталога товаров — каталог решений под задачи клиента.</p>
+      <div class="protobox">
+        <span class="pt">Структуру и наполнение можно посмотреть уже сейчас: мы собрали кликабельный прототип.</span>
+        <a class="proto" href="index.html" target="_blank" rel="noopener">Посмотреть прототип сайта <span class="ar">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="sn">03</div>
+    <div class="sc"><h3>Площадки и карты</h3>
+      <p>Оформим и приведём к единому виду присутствие компании в сети: Яндекс.Карты, 2ГИС, Google, профильные справочники и агрегаторы. Отдельно займёмся репутацией: настроим сбор отзывов и поднимем рейтинг.</p>
+      <p>Это помогает находить вас в поиске и на картах и формирует доверие ещё до первого контакта.</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="sn">04</div>
+    <div class="sc"><h3>Блог и контент</h3>
+      <p>Запустим блог со статьями под реальные запросы клиентов: «аренда или покупка спецодежды», нормы стирки, требования отраслей.</p>
+      <p>Это даёт приток <span class="hi">органического трафика из поисковой выдачи</span>: люди ищут по запросам, связанным с вашими услугами, и находят именно вас. Чем больше полезного контента, тем выше позиции, и эффект накапливается со временем, в отличие от рекламы, которая работает только пока за неё платят.</p>
+      <p>Дополнительно мы делаем <span class="hi">GEO-оптимизацию</span>, адаптацию под искусственный интеллект и нейропоиск. «Метрохим» будут не просто находить, но и рекомендовать ИИ-помощники и поисковые системы нового поколения, когда клиент спрашивает, где арендовать или обслужить спецодежду. Результат: бесплатный органический трафик и заявки.</p>
+      <div class="goal">
+        <span class="num">≈100</span>
+        <span class="cap"><b>обращений в месяц</b>цель, к которой мы идём, складывая поток из двух источников: рекламы и SEO.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="sn">05</div>
+    <div class="sc"><h3>Контекстная реклама</h3>
+      <p>Настроим рекламу в Яндекс.Директе по горячим запросам и направим её на нужные страницы услуг. Это даёт быстрый поток заявок, когда сайт уже готов их принимать.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- РЕЗУЛЬТАТ -->
+<section class="sec-tight paper2"><div class="wrap">
+  <div class="shead" style="max-width:24ch">
+    <div class="mark"></div>
+    <h2 style="font-size:var(--text-2xl)">Что вы получите</h2>
+  </div>
+  <div class="results">
+    <div class="ritem"><h3>Продающий сайт</h3><p>Объясняет ваши преимущества и собирает заявки, а не просто «висит» визиткой.</p></div>
+    <div class="ritem"><h3>Поток коммерческих клиентов</h3><p>Не только госзаказ. Цель — порядка 100 обращений в месяц с рекламы и SEO.</p></div>
+    <div class="ritem"><h3>Видимость в поиске и на картах</h3><p>Вас находят по запросам клиентов в вашем городе и нише.</p></div>
+    <div class="ritem"><h3>Имиджевое позиционирование</h3><p>Аккуратные сайт, соцсети, блог и карты повышают доверие к компании ещё до первого разговора.</p></div>
+    <div class="ritem"><h3>Независимость от одного заказчика</h3><p>Собственный канал привлечения снижает зависимость от единственного контракта.</p></div>
+  </div>
+</div></section>
+
+<!-- ЭКСПЕРТИЗА -->
+<section class="sec navy"><div class="wrap">
+  <div class="mark"></div>
+  <p class="statement">Покажем вашу экспертизу <em>рынку</em></p>
+  <div class="body-col" style="margin-top:var(--space-lg);color:var(--color-on-navy-2)">
+    <p>У вас сильная экспертиза, собственное производство и многолетний опыт, но сейчас об этом знаете, по сути, только вы сами.</p>
+    <p>Задача — показать ваш профессионализм и компетенцию широкой аудитории: через кейсы, контент, оформление и подачу. Мы упакуем то, что вы умеете, так, чтобы это видел и ценил рынок, а не только вы.</p>
+  </div>
+</div></section>
+
+<!-- ФОРМАТ + ПАКЕТЫ -->
+<section class="sec-tight"><div class="wrap">
+  <div class="mark"></div>
+  <h2 style="font-size:var(--text-xl);max-width:18ch;margin-bottom:var(--space-md)">Сотрудничество</h2>
+  <div>
+    <div class="prow2"><span class="lbl">Как мы работаем</span><p>Порядок и формат работы: с чего начинаем, как согласуем и ведём проект.</p><span class="badge">сроки после согласования</span></div>
+    <div class="prow2"><span class="lbl">Пакеты и стоимость</span><p>Варианты сотрудничества под разный бюджет и темп.</p><span class="badge">цены после согласования</span></div>
+  </div>
+</div></section>
+
+<!-- ЗАКРЫТИЕ -->
+<section class="close navy"><div class="wrap">
+  <div class="mark"></div>
+  <p class="statement">Начинаем с <em>сайта</em>, фундамента, на котором держится всё остальное.</p>
+  <p style="margin-top:var(--space-lg);color:var(--color-on-navy-2);max-width:50ch">Дальше по дорожной карте подключаем площадки, блог и рекламу и выводим «Метрохим» на стабильный поток заявок.</p>
+</div></section>
+
+<footer><div class="wrap"><div class="fwrap">
+  <span>ООО «Метрохим» · ИНН 7826069993 · ОГРН 1037851013375</span>
+  <span>Санкт-Петербург, пр. Стачек, 100</span>
+</div></div></footer>
+
+</body>
+</html>
