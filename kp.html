@@ -166,6 +166,24 @@ a{color:inherit;text-decoration:none}
 .prow2 .badge{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.04em;
   color:var(--color-ink-2);border:1px solid var(--color-rule);padding:.35rem .7rem;border-radius:2px;white-space:nowrap}
 
+/* packages */
+.pkgs{display:grid;gap:var(--space-md);margin-top:var(--space-lg)}
+.pkg{border:1px solid var(--color-rule);background:var(--color-paper);padding:1.75rem}
+.pkg.feature{border-color:var(--color-accent);background:var(--color-paper-2)}
+.pkg-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-md);flex-wrap:wrap;
+  padding-bottom:var(--space-sm);border-bottom:1px solid var(--color-rule);margin-bottom:var(--space-md)}
+.pkg-name{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600}
+.pkg-name .nick{display:block;font-family:var(--font-mono);font-size:var(--text-sm);font-weight:400;
+  letter-spacing:.06em;color:var(--color-accent-ink);margin-bottom:.4rem}
+.pkg-price{font-family:var(--font-mono);font-size:var(--text-xl);font-weight:500;color:var(--color-ink);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.pkg ul{list-style:none;display:grid;gap:var(--space-sm)}
+.pkg li{display:flex;gap:.7rem;align-items:flex-start}
+.pkg li::before{content:"";width:7px;height:7px;background:var(--color-accent-ink);flex:none;margin-top:.5rem}
+.pkg li .nm{color:var(--color-ink);font-weight:600}
+.pkg li .note{display:block;color:var(--color-ink-2);font-size:var(--text-sm);margin-top:.15rem;line-height:1.5}
+.pkg .incl{font-size:var(--text-sm);color:var(--color-ink-2);margin-bottom:var(--space-sm);font-style:italic}
+
 /* close */
 .close{padding:var(--space-3xl) 0}
 .close .statement{margin-top:var(--space-md)}
@@ -332,14 +350,65 @@ footer .fwrap{display:flex;justify-content:space-between;gap:var(--space-md);fle
   </div>
 </div></section>
 
-<!-- ФОРМАТ + ПАКЕТЫ -->
-<section class="sec-tight"><div class="wrap">
+<!-- ПАКЕТЫ -->
+<section class="sec-tight paper2"><div class="wrap">
   <div class="mark"></div>
-  <h2 style="font-size:var(--text-xl);max-width:18ch;margin-bottom:var(--space-md)">Сотрудничество</h2>
-  <div>
-    <div class="prow2"><span class="lbl">Как мы работаем</span><p>Порядок и формат работы: с чего начинаем, как согласуем и ведём проект.</p><span class="badge">сроки после согласования</span></div>
-    <div class="prow2"><span class="lbl">Пакеты и стоимость</span><p>Варианты сотрудничества под разный бюджет и темп.</p><span class="badge">цены после согласования</span></div>
+  <h2 style="font-size:var(--text-2xl);max-width:16ch;margin-bottom:var(--space-sm)">Пакеты и стоимость</h2>
+  <p class="body-col" style="color:var(--color-ink-2)">Три варианта под разный бюджет и задачи. Цена указана за весь объём работ пакета.</p>
+
+  <div class="pkgs">
+
+    <div class="pkg">
+      <div class="pkg-head">
+        <div class="pkg-name"><span class="nick">Пакет 1 · Старт</span>Сайт и первые заявки</div>
+        <div class="pkg-price">450 000 ₽</div>
+      </div>
+      <ul>
+        <li><div><span class="nm">Разработка сайта</span><span class="note">современный продающий сайт по согласованной структуре</span></div></li>
+        <li><div><span class="nm">Написание всех текстов на сайт</span><span class="note">профессиональные тексты для всех страниц</span></div></li>
+        <li><div><span class="nm">Базовая SEO-оптимизация</span><span class="note">настраиваем сайт, чтобы его начал находить поиск</span></div></li>
+        <li><div><span class="nm">Оформление Яндекс.Карт и Яндекс.Бизнеса</span><span class="note">компания появляется на картах и в Яндексе</span></div></li>
+        <li><div><span class="nm">Настройка контекстной рекламы</span><span class="note">запускаем рекламу в Яндекс.Директе для первых заявок</span></div></li>
+      </ul>
+    </div>
+
+    <div class="pkg">
+      <div class="pkg-head">
+        <div class="pkg-name"><span class="nick">Пакет 2 · Рост</span>Сайт, стратегия и сопровождение</div>
+        <div class="pkg-price">600 000 ₽</div>
+      </div>
+      <ul>
+        <li><div><span class="nm">Глубокий анализ конкурентов и стратегия продвижения на год</span><span class="note">изучаем сильных игроков рынка и составляем план на 12 месяцев</span></div></li>
+        <li><div><span class="nm">Разработка сайта</span><span class="note">продающий сайт по согласованной структуре</span></div></li>
+        <li><div><span class="nm">Тексты и отдельно продающие картинки</span><span class="note">пишем тексты и отдельно разрабатываем продающий визуал</span></div></li>
+        <li><div><span class="nm">Расширенная SEO-оптимизация</span><span class="note">углублённо работаем над позициями сайта в поиске</span></div></li>
+        <li><div><span class="nm">Оформление всех картосервисов (Яндекс, 2ГИС, Zoon и др.)</span><span class="note">компания видна на всех картах и в справочниках</span></div></li>
+        <li><div><span class="nm">Ведение SEO-оптимизации 3 месяца</span><span class="note">продолжаем поднимать сайт в поиске три месяца</span></div></li>
+      </ul>
+    </div>
+
+    <div class="pkg feature">
+      <div class="pkg-head">
+        <div class="pkg-name"><span class="nick">Пакет 3 · Под ключ</span>Продвижение, авторитет и ведение</div>
+        <div class="pkg-price">1 000 000 ₽</div>
+      </div>
+      <ul>
+        <li><div><span class="nm">Глубокий анализ конкурентов и стратегия продвижения на год</span><span class="note">изучаем сильных игроков рынка и составляем план на 12 месяцев</span></div></li>
+        <li><div><span class="nm">Разработка сайта</span><span class="note">продающий сайт по согласованной структуре</span></div></li>
+        <li><div><span class="nm">Тексты и отдельно продающие картинки</span><span class="note">тексты плюс продающий визуал</span></div></li>
+        <li><div><span class="nm">Расширенная SEO + закупка ссылок (РБК и профильные ресурсы)</span><span class="note">повышаем авторитет сайта ссылками с солидных площадок</span></div></li>
+        <li><div><span class="nm">Ведение SEO-продвижения 3 месяца</span><span class="note">системно поднимаем сайт в поиске</span></div></li>
+        <li><div><span class="nm">Размещение на топ-площадках отрасли (строительные, промышленные)</span><span class="note">публикации, где на вас ссылаются как на авторитетную компанию</span></div></li>
+        <li><div><span class="nm">Работа с отзывами и репутацией</span><span class="note">выводим рейтинг к 5★ на всех площадках</span></div></li>
+        <li><div><span class="nm">Проработка запросов под искусственный интеллект 3 месяца</span><span class="note">чтобы вас рекомендовали ИИ-помощники и нейропоиск</span></div></li>
+        <li><div><span class="nm">Настройка и ведение контекстной рекламы 3 месяца</span><span class="note">стабильный поток заявок с рекламы</span></div></li>
+        <li><div><span class="nm">Оформление блога и ведение контента 3 месяца</span><span class="note">регулярные статьи под поиск и доверие</span></div></li>
+        <li><div><span class="nm">Оформление и ведение соцсетей 3 месяца</span><span class="note">присутствие и контент в соцсетях</span></div></li>
+      </ul>
+    </div>
+
   </div>
+  <p style="margin-top:var(--space-md);font-size:var(--text-sm);color:var(--color-ink-2)">Сроки и порядок этапов согласуем под выбранный пакет.</p>
 </div></section>
 
 <!-- ЗАКРЫТИЕ -->
